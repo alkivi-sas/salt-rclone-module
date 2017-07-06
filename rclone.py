@@ -22,11 +22,7 @@ import string
 import time
 import sys
 import threading
-import binascii
-from struct import pack, unpack
 import base64
-import base32hex
-import hashlib
 from Crypto import Random
 from Crypto.Cipher import AES
 from Crypto.Util import Counter
