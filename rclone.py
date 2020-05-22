@@ -27,6 +27,8 @@ from Crypto import Random
 from Crypto.Cipher import AES
 from Crypto.Util import Counter
 
+PY3 = sys.version_info[0] >= 3
+
 
 # Import 3rdp-party libs
 from salt.ext.six.moves import range  # pylint: disable=import-error,redefined-builtin
@@ -52,7 +54,10 @@ def obscure(password):
     counter = b'4242424242424242'
     cypher = AES.new(bytes(real_key), AES.MODE_CTR, counter=lambda: counter)
     encrypted = cypher.encrypt(password)
-    return base64.urlsafe_b64encode(counter + encrypted).replace('=', '')
+    data = base64.urlsafe_b64encode(counter + encrypted)
+    if PY3:
+        data = data.decode('utf-8')
+    return data.replace('=', '')
 
 if __name__ == "__main__":
     print(obscure(str(sys.argv[1])))
