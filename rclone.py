@@ -29,16 +29,6 @@ from Crypto.Util import Counter
 
 PY3 = sys.version_info[0] >= 3
 
-
-# Import 3rdp-party libs
-from salt.ext.six.moves import range  # pylint: disable=import-error,redefined-builtin
-
-# Import salt libs
-import salt.utils
-from salt.exceptions import CommandExecutionError, SaltInvocationError
-from salt.ext import six
-from salt.ext.six import string_types
-
 logger = logging.getLogger(__name__)
 
 # Define the module's virtual name
